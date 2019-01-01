@@ -1,0 +1,25 @@
+[debug] [2019-01-01T00:55:44.626Z] ----------------------------------------------------------------------
+[debug] [2019-01-01T00:55:44.629Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kazuki\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-01-01T00:55:44.630Z] CLI Version:   6.2.2
+[debug] [2019-01-01T00:55:44.630Z] Platform:      win32
+[debug] [2019-01-01T00:55:44.630Z] Node Version:  v10.14.1
+[debug] [2019-01-01T00:55:44.632Z] Time:          Tue Jan 01 2019 09:55:44 GMT+0900 (GMT+09:00)
+[debug] [2019-01-01T00:55:44.632Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-01T00:55:44.649Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-01T00:55:44.649Z] > authorizing via signed-in user
+[debug] [2019-01-01T00:55:44.650Z] [iam] checking project react-login-project-82ae2 for permissions ["firebase.projects.get"]
+[debug] [2019-01-01T00:55:44.653Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/react-login-project-82ae2:testIamPermissions  
+
+[debug] [2019-01-01T00:55:45.758Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-01T00:55:45.759Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/react-login-project-82ae2  
+ 
+[debug] [2019-01-01T00:55:46.664Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\ProgramWorkspace\react\react-firestore-login\react-firestore-login'...
+[info] 
+[debug] [2019-01-01T00:55:46.667Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/67724500104/clients/_:getWebAppConfig  
+ 
+[debug] [2019-01-01T00:55:47.474Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: build
+[info] +  hosting: Local server: http://localhost:5000

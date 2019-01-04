@@ -27,20 +27,20 @@ class App extends Component {
         password: e.target.value
       })
     }
-    console.log(e.target)
+    // console.log(e.target)
   }
 
   componentWillMount() {
     firebase.auth().onAuthStateChanged(user => {
-    console.log(user)
+    // console.log(user)
     if (user) {
-      console.log("ログインしてる")
+      // console.log("ログインしてる")
       this.setState({
         login: true,
         userId: user.uid
       })
     } else {
-      console.log("ログインしてない")
+      // console.log("ログインしてない")
       this.setState({
         login: false,
         userId: false
@@ -50,7 +50,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <AuthAll data={ this.state }/>
@@ -64,7 +63,6 @@ class App extends Component {
             <input type="password" onChange={ this.handleChange } value={ this.state.password } placeholder="password"/>
           </label>
         </div>
-        <p>{ this.state.userId }</p>
       </div>
     );
   }

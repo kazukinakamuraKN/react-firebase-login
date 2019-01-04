@@ -1,30 +1,9 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
 import { config } from './environment'
 import firebase from 'firebase'
-import { LoginPopup } from './LoginPopup'
-import { LoginRedirect } from './LoginRedirect'
-import { SignOut } from './SignOut'
-
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-      // User is signed in.
-    console.log("loginすみ")
-    console.log(user.getToken())
-  } else {
-    // No user is signed in.
-    console.log("loginしてない")
-  }
-})
-
-var user = firebase.auth().currentUser;
-
-if (user) {
-  console.log("User is signed in." + user)
-} else {
-  console.log("No user is signed in." + user)
-}
+import { AuthAll } from './Authentication'
 
 class App extends Component {
 
@@ -32,19 +11,18 @@ class App extends Component {
     super(props)
     this.state = {
       name: '',
-      password: ''
+      password: '',
+      login: '',
+      userId: ''
     }
-
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = (e) => {
-    if(e.target.type == 'text') {
+    if(e.target.type === 'text') {
       this.setState({
         name: e.target.value
       })
-    } else if(e.target.type == 'password') {
+    } else if(e.target.type === 'password') {
       this.setState({
         password: e.target.value
       })
@@ -52,27 +30,31 @@ class App extends Component {
     console.log(e.target)
   }
 
-  handleSubmit(e){
-
-    // alert( `name = ${this.state.name} password = ${this.state.password} ` )
-    firebase.auth().createUserWithEmailAndPassword(this.state.name, this.state.password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
-    });
-    e.preventDefault();
-    console.log(e.target)
+  componentWillMount() {
+    firebase.auth().onAuthStateChanged(user => {
+    console.log(user)
+    if (user) {
+      console.log("ログインしてる")
+      this.setState({
+        login: true,
+        userId: user.uid
+      })
+    } else {
+      console.log("ログインしてない")
+      this.setState({
+        login: false,
+        userId: false
+      })
+    }
+  })
   }
 
   render() {
+    console.log(this.state)
     return (
       <div>
-        hello
-        <button onClick={ LoginPopup }>Login popup</button>
-        <button onClick={ LoginRedirect }>Login redirect</button>
-        <button onClick={ SignOut }>SignOut</button>
-        <form onSubmit={(e) => this.handleSubmit(e)} >
+        <AuthAll data={ this.state }/>
+        <div>
           <label>
             Name:
             <input type="text" onChange={ this.handleChange } value={ this.state.name } placeholder="name"/>
@@ -81,8 +63,8 @@ class App extends Component {
             Pass:
             <input type="password" onChange={ this.handleChange } value={ this.state.password } placeholder="password"/>
           </label>
-          <input type="submit" value="Submit" />
-        </form>
+        </div>
+        <p>{ this.state.userId }</p>
       </div>
     );
   }
